@@ -47,6 +47,8 @@ public class MaquinaSnacks {
         var salir = false;
         switch (opcion){
             case 1 -> comprarSnack(consola, productos);
+            case 2 -> mostrarTicket(productos);
+
         }
         return salir;
     }
@@ -68,5 +70,17 @@ public class MaquinaSnacks {
         if(!snackEncontrado){
             System.out.println("Id de snack no encontrado: " + idSnack);
         }
+    }
+
+    private static void mostrarTicket(List<Snack> productos){
+        var ticket = "*** Ticket de Venta ***";
+        var total = 0.0;
+
+        for(var producto : productos){
+            ticket += "\n\t" + producto.getNombre() + " - $" + producto.getPrecio();
+            total += producto.getPrecio();
+        }
+        ticket += "\n\tTotal -> $" + total;
+        System.out.println(ticket);
     }
 }
