@@ -40,7 +40,7 @@ public class MaquinaSnacks {
                 3. Agregar nuevo Snack
                 4. Salir
                 Elige una opcion: \s""");
-        return consola.nextInt();
+        return Integer.parseInt(consola.nextLine());
     }
 
     private static boolean ejecutarOpciones(int opcion, Scanner consola, List<Snack> productos){
@@ -48,6 +48,12 @@ public class MaquinaSnacks {
         switch (opcion){
             case 1 -> comprarSnack(consola, productos);
             case 2 -> mostrarTicket(productos);
+            case 3 -> agregarSnack(consola);
+            case 4 -> {
+                System.out.println("Hasta pronto");
+                return salir = true;
+            }
+            default -> System.out.println("Opcion invalida: " + opcion);
 
         }
         return salir;
@@ -55,7 +61,7 @@ public class MaquinaSnacks {
 
     private static void comprarSnack(Scanner consola, List<Snack> productos){
         System.out.print("Que Snack quieres comprar (ID) : ");
-        int idSnack = consola.nextInt();
+        var idSnack = Integer.parseInt(consola.nextLine());
         //Validar que el snack exista en la lista de Snacks
         var snackEncontrado = false;
         for(var snack : Snacks.getSnacks()){
@@ -83,4 +89,17 @@ public class MaquinaSnacks {
         ticket += "\n\tTotal -> $" + total;
         System.out.println(ticket);
     }
+
+    private static void agregarSnack(Scanner consola){
+        System.out.print("Nombre del snack: ");
+        var nombre = consola.nextLine();
+        System.out.print("Precio del snack: ");
+        var precio = Double.parseDouble(consola.nextLine());
+
+        Snacks.agregarSnack(new Snack(nombre, precio));
+
+        System.out.println("Snack agregado correctamente !!");
+        Snacks.mostrarSnack();
+    }
+
 }
