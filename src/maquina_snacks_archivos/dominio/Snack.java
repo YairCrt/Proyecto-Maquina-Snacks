@@ -1,6 +1,5 @@
-package maquina_snacks;
+package maquina_snacks_archivos.dominio;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 public class Snack {
